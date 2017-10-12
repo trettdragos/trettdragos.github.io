@@ -1,1 +1,1 @@
-# trettdragos.github.io
+# trettdragos.gitgud.io
