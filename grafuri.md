@@ -5,7 +5,7 @@ Reprezentarea grafurilor in memorie
 -------------
 
 * Matricea de adiacenta
-```
+``` c++
 int a[100][100], n;
 void cititre()
 {
@@ -56,7 +56,7 @@ void cititre()
     for(int k=1;k<=m;k++) {
         cin>>x>>y;
         adaug(l[x],y); //graf orientat
-        adaug(l[x],y); adaug(l[y],x); //graf orientat
+        adaug(l[x],y); adaug(l[y],x); //graf neorientat
     }
 }
 ```
@@ -201,7 +201,7 @@ void citire(){
 void dfs(int x, int A[][101], int viz[]){
     viz[x]=1;
     for(int i=1; i<=n; i++){
-        if(a[x][i] && !viz[i]){
+        if(A[x][i] && !viz[i]){
             dfs(i, A, viz);
         }
     }
@@ -218,7 +218,7 @@ void ctc(){
         if(!viz[x]){
             nr++;
             dfs(x, a, pluss);
-            dfs(x, a, minuss);
+            dfs(x, AT, minuss);
             for(int i=1; i<=n; i++){
                 if(minuss[i] && pluss[i]) {
                     cout << i << " ";
