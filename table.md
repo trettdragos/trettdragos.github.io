@@ -1,2 +1,7 @@
 [GRAFURI](./grafuri.html)
-[TEST2](./materie2.html)
+###Pentru test Alg prim, kruskal, Roy floyd, Dijkstra
+[ALG PRIM](./AlgPrim.html)
+[Roy Floyd](./Roy-Floyd.html)
+[Dijkstra](./algDijkstra.html)
+!!! Atentie
+Kruskal is missing, comming soon
