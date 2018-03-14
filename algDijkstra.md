@@ -1,5 +1,84 @@
 #Algoritmul lui Dijkstra
+#C++
+###Graf orientat
 
+```
+define inf 100000
+int c[101][101], D[101], S[101], PREC[101], n, x0;
+
+void citire(){
+	ifstream f("date.in");
+	f>>n>>x0;
+	for(int i=1; i<=n; i++){
+		for(int j=1; j<=n; j++){
+			C[i][j]=inf;
+		}
+	}
+	for(int i=1; i<=n; i++){
+		C[i][i]=0;
+	}
+	int x, y, cost;
+	while(f>>x>>y>>cost){
+		c[x][y]=cost;
+	}
+}
+
+void dijkstra(){
+	for(int i=1; i<=n; i++){
+		if(C[x0][i]<inf){
+			D[i]=C[x0][i];
+			PREC[i]=x0;
+		}
+		else{
+			D[i]=inf;
+			PREC[i]=0;
+		}
+	}
+	S[x0]=1;
+	int k, minim;
+	do{
+		k=-1;
+		minim=inf;
+		//determinam minimul din D pt vf care nu apartine lui S
+		//aflam varful urmator
+		for(int i=1; i<=n; i++){
+			if(S[i]==0D[i]<minim){
+				minim=D[i];
+				k=i;
+			}
+		}
+		if(k!=-1){
+			S[k]=1;
+			for(int i=1; i<=n; i++){
+				if(S[i]==0 && D[k]+C[k][i]<D[i]){
+					D[i]=D[k]+C[k][i];
+					PREC[i]=k;
+				}
+			}
+		}
+
+	}while(k!=-1);
+}
+
+void drum(int i){
+	if(i!=x0){
+		drum(PREC[i]);
+		cout<<i<<" ";
+	}
+}
+
+void afisare(){
+	for(int i=1; i<=n; i++){
+		if(D[i]==inf){
+			cout<<"nu exista drum de la "<<x0<<" la "<<i;
+		}else if(D[i]>0){
+			cout<<"drumul minim de la "<<x0<<" la "<<i<<" : ";
+			drum(i);
+			cout<<endl;
+		}
+	}
+}
+```
 Determina drumul minim intr-un graf plecand de la un nod dat catre toate celalate noduri ale grafului
 
 Algotirmul det. drumurile de lungime minima din graf in ordine crescatoare astfel:
@@ -29,9 +108,8 @@ initial in S se afla vf de start
 - => ```D[j]=D[k]+c[k][j]```
 
 ###Exemplu
-!!! i
-!!! este
-!!! infinit 
+!!! antentie
+i = infinit
 ####Initial
 
 ||1|2|3|4|5|6|
@@ -79,3 +157,5 @@ initial in S se afla vf de start
 |S   |1|1|1|1|1|0|
 |D   |0|1|4|5|2|i|
 |Prec|0|1|5|3|2|0|
+
+#Test din:  Alg prim, kruskal, Roy floyd, Dijkstra

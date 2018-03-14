@@ -1015,7 +1015,85 @@ body .markdown-body
   }
 }
 </style><title>algDijkstra</title></head><body><article class="markdown-body"><h1 id="algoritmul-lui-dijkstra"><a name="user-content-algoritmul-lui-dijkstra" href="#algoritmul-lui-dijkstra" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Algoritmul lui Dijkstra</h1>
-<p>Determina drumul minim intr-un graf plecand de la un nod dat catre toate celalate noduri ale grafului</p>
+<h1 id="c"><a name="user-content-c" href="#c" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>C++</h1>
+<h3 id="graf-orientat"><a name="user-content-graf-orientat" href="#graf-orientat" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Graf orientat</h3>
+<p><pre><code>define inf 100000
+int c[101][101], D[101], S[101], PREC[101], n, x0;
+
+void citire(){
+    ifstream f(&quot;date.in&quot;);
+    f&gt;&gt;n&gt;&gt;x0;
+    for(int i=1; i&lt;=n; i++){
+        for(int j=1; j&lt;=n; j++){
+            C[i][j]=inf;
+        }
+    }
+    for(int i=1; i&lt;=n; i++){
+        C[i][i]=0;
+    }
+    int x, y, cost;
+    while(f&gt;&gt;x&gt;&gt;y&gt;&gt;cost){
+        c[x][y]=cost;
+    }
+}
+
+void dijkstra(){
+    for(int i=1; i&lt;=n; i++){
+        if(C[x0][i]&lt;inf){
+            D[i]=C[x0][i];
+            PREC[i]=x0;
+        }
+        else{
+            D[i]=inf;
+            PREC[i]=0;
+        }
+    }
+    S[x0]=1;
+    int k, minim;
+    do{
+        k=-1;
+        minim=inf;
+        //determinam minimul din D pt vf care nu apartine lui S
+        //aflam varful urmator
+        for(int i=1; i&lt;=n; i++){
+            if(S[i]==0D[i]&lt;minim){
+                minim=D[i];
+                k=i;
+            }
+        }
+        if(k!=-1){
+            S[k]=1;
+            for(int i=1; i&lt;=n; i++){
+                if(S[i]==0 &amp;&amp; D[k]+C[k][i]&lt;D[i]){
+                    D[i]=D[k]+C[k][i];
+                    PREC[i]=k;
+                }
+            }
+        }
+
+    }while(k!=-1);
+}
+
+void drum(int i){
+    if(i!=x0){
+        drum(PREC[i]);
+        cout&lt;&lt;i&lt;&lt;&quot; &quot;;
+    }
+}
+
+void afisare(){
+    for(int i=1; i&lt;=n; i++){
+        if(D[i]==inf){
+            cout&lt;&lt;&quot;nu exista drum de la &quot;&lt;&lt;x0&lt;&lt;&quot; la &quot;&lt;&lt;i;
+        }else if(D[i]&gt;0){
+            cout&lt;&lt;&quot;drumul minim de la &quot;&lt;&lt;x0&lt;&lt;&quot; la &quot;&lt;&lt;i&lt;&lt;&quot; : &quot;;
+            drum(i);
+            cout&lt;&lt;endl;
+        }
+    }
+}
+</code></pre><br />
+Determina drumul minim intr-un graf plecand de la un nod dat catre toate celalate noduri ale grafului</p>
 <p>Algotirmul det. drumurile de lungime minima din graf in ordine crescatoare astfel:</p>
 <p>1)Initial drumul minim care pleaca din x0 este dat de arcul(muchia) de cost minim care iese din x0. Notam arcul (x0, xi)<br />
 2)Urmatorul drum minim selectat va fi: fie un arc/muchie care pleaca din x0, fie drumul (x0, xi, xj)<br />
@@ -1040,15 +1118,10 @@ initial in S se afla vf de start</li>
 <li>actualizam drumurile pt toti vecinii lui k care nu sunt in S daca <code>D[j]&gt;D[k]+C[k][j]</code> unde j este vecinul lui K</li>
 <li>=&gt; <code>D[j]=D[k]+c[k][j]</code></li>
 </ul>
-<div class="admonition i">
-<p class="admonition-title">I</p>
+<div class="admonition antentie">
+<p class="admonition-title">Antentie</p>
 </div>
-<div class="admonition este">
-<p class="admonition-title">Este</p>
-</div>
-<div class="admonition infinit">
-<p class="admonition-title">Infinit</p>
-</div>
+<p>i = infinit</p>
 <h4 id="initial"><a name="user-content-initial" href="#initial" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Initial</h4>
 <table>
 <thead>
@@ -1306,4 +1379,5 @@ initial in S se afla vf de start</li>
 <td>0</td>
 </tr>
 </tbody>
-</table></article></body></html>
+</table>
+<h1 id="test-din-alg-prim-kruskal-roy-floyd-dijkstra"><a name="user-content-test-din-alg-prim-kruskal-roy-floyd-dijkstra" href="#test-din-alg-prim-kruskal-roy-floyd-dijkstra" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Test din:  Alg prim, kruskal, Roy floyd, Dijkstra</h1></article></body></html>
