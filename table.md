@@ -1,10 +1,10 @@
-[GRAFURI](trett.me/grafuri.html)
+[GRAFURI](/grafuri.html)
 
 Pentru test Alg prim, kruskal, Roy floyd, Dijkstra
 
-[ALG PRIM](trett.me/AlgPrim.html)
-[Roy Floyd](trett.me/Roy-Floyd.html)
-[Dijkstra](trett.me/algDijkstra.html)
+[ALG PRIM](/AlgPrim.html)
+[Roy Floyd](/Roy-Floyd.html)
+[Dijkstra](/algDijkstra.html)
 
 !!! Atentie
 
