@@ -7,6 +7,6 @@ Pentru test Alg prim, kruskal, Roy floyd, Dijkstra
 [Dijkstra](/algDijkstra.html)
 [Kruskal](/kruskal.html)
 
-!!! Atentie
+!!! Atentie	
 
 DOAR DIJKSTRA ARE EXPLICATII SI EXEMPLE

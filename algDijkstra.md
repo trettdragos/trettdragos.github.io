@@ -42,7 +42,7 @@ void dijkstra(){
 		//determinam minimul din D pt vf care nu apartine lui S
 		//aflam varful urmator
 		for(int i=1; i<=n; i++){
-			if(S[i]==0D[i]<minim){
+			if(S[i]==0 && D[i]<minim){
 				minim=D[i];
 				k=i;
 			}
