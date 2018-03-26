@@ -1015,46 +1015,74 @@ body .markdown-body
   }
 }
 </style><title>Roy-Floyd</title></head><body><article class="markdown-body"><h2 id="roy-floyd"><a name="user-content-roy-floyd" href="#roy-floyd" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Roy-Floyd</h2>
-<pre><code>#define INF 100000
-int n,c[101][101],d[101][101];
+<pre><code>#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#define INF 10000000
+
+using namespace std;
+
+int cm[101], c[101][101], t[101],n,start;
+
 void citire()
 {
-ifstream f(&quot;date.in&quot;);
-f&gt;&gt;n;
-int x,y,cost;
-for(int i=1;i&lt;=n;i++)
-   for(int j=1;j&lt;=n;j++)
-     c[i][j]=INF;
-for(int i=1;i&lt;=n;i++)
-   c[i][i]=0;
-while(f&gt;&gt;x&gt;&gt;y&gt;&gt;cost)
-   {
-    c[x][y]=cost;
-    d[x][y]=x;
-   }
+    ifstream f(&quot;date.in&quot;);
+    f&gt;&gt;n&gt;&gt;start;
+    for(int i=1; i&lt;=n; i++)
+        for(int j=1; j&lt;=n; j++)  ///punem infinit in toata matricea c
+            c[i][j]=INF;
+    for(int i=1; i&lt;=n; i++)
+        c[i][i]=0;               ///punem 0 pe diagonala principala
+    int x,y,cost;
+    while(f&gt;&gt;x&gt;&gt;y&gt;&gt;cost)
+    {
+        c[x][y]=cost;
+        d[x][y]=x;              /// marcam costul muchiei [x,y] in c
+                                ///x in d[x][y]
+    }
 }
-void Roy_Floyd()
+
+void Roy-Floyd()
 {
-for(int k=1;k&lt;=n;k++)
- for(int i=1;i&lt;=n;i++)
-   for(int j=1;j&lt;=n;j++)
-     if(c[i][j]&gt;c[i][k]+c[k][j])
-       {
-        c[i][j]=c[i][k]+c[k][j];
-        d[i][j]=d[k][j];
-       }
+    for(int k=1; k&lt;=n; k++)
+        for(int i=1; i&lt;=n; i++)
+            for(int j=1; j&lt;=n; j++)
+                if(c[i][j]&gt;c[i][k]+c[k][j])
+                    {
+                        c[i][j]=c[i][k]+c[k][j];
+                        d[i][j]=d[k][j];
+                    }
 }
-void drum(int i,int j)
+
+void drum(int i, int j)
 {
-if(i!=j)
-   drum(i,d[i][j]);
-cout&lt;&lt;j&lt;&lt;&quot; &quot;;
+    if(i!=j)
+        drum(i,d[i][j]);
+    cout&lt;&lt;j&lt;&lt;&quot; &quot;;
 }
+
 void afisare()
 {
-for(int i=1;i&lt;=n;i++)
-  for(int j=1;j&lt;=n;j++)
-     if(i!=j)
+    for(int i=1; i&lt;=n; i++)
+        for(int j=1; j&lt;=n; j++)
+            if(i!=j)
+    {
+        cout&lt;&lt;&quot;Drumul minim de la &quot; &lt;&lt; i&lt;&lt; &quot; la &quot;&lt;&lt;j&lt;&lt;&quot;are costul: &quot;;
+        if(c[i][j]==INF)
+            cout&lt;&lt;&quot;inexistent \n&quot;;
+        else
+        {
+            cout&lt;&lt;c[i][j]&lt;&lt;&quot;. Drumul: &quot;;
+            drum(i,j);
+            cout&lt;&lt;&quot;\n&quot;;
+        }
+    }
+}
+int main()
+{
+    citire();
+    Roy-Floyd();
+    afisare();
+    return 0;
 }
 </code></pre>
 
