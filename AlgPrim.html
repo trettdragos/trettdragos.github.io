@@ -1015,6 +1015,62 @@ body .markdown-body
   }
 }
 </style><title>AlgPrim</title></head><body><article class="markdown-body"><h2 id="algoritmul-lui-prim"><a name="user-content-algoritmul-lui-prim" href="#algoritmul-lui-prim" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Algoritmul lui Prim</h2>
+<pre><code>#define INF 1000000
+int cm[101],c[101][101],t[101],n;
+void citire()
+{
+ifstream f(&quot;date.in&quot;);
+f&gt;&gt;n;
+for(int i=1;i&lt;=n;i++)
+   for(int j=1;j&lt;n;j++)
+     c[i][j]=INF;
+for(int i=1;i&lt;=n;i++)
+   c[i][i]=0;
+iny x,y,cost;
+while(f&gt;&gt;x&gt;&gt;y&gt;&gt;cost)
+   c[x][y]=c[y][x]=cost;
+}
+void Prim()
+{
+for(int i=1;i&lt;=n;i++)
+   { cm[i]=c[start][i];
+     t[i]=start;
+   }
+viz[start]=1;
+t[start]=0;
+nrvfsel=1;
+while(nrvfsel&lt;n)
+  {
+   int mini=INF,vf;
+   for(int i=1;i&lt;=n;i++)
+      if(cm[i]&lt;mini &amp;&amp; viz[i]==0)
+       {
+        mini=cm[i];
+        vf=i;
+       }
+   viz[vf]=1;
+   for(int i=1;i&lt;=n;i++)
+     if(viz[i]==0 &amp;&amp; cm[i]&gt;c[vf][i])
+       {
+        cm[i]=c[vf][i];
+        t[i]=vf;
+       }
+   nrvfsel++;
+  }
+}
+void afisare()
+{
+int costAPM=0;
+for(int i=1;i&lt;=n;i++)
+  if(i!=start)
+   {
+    cout&lt;&lt;i&lt;&lt;&quot; &quot;&lt;&lt;t[i]&lt;&lt;&quot;\n&quot;;
+    costAPM=c[i][t[i]];
+   }
+ cout&lt;&lt;&quot;Costul APM=&quot;&lt;&lt;costAPM;
+}
+</code></pre>
+
 <p>Determina Apm al unui graf conex n vf si definitia fucntia const.</p>
 <h3 id="algoritm"><a name="user-content-algoritm" href="#algoritm" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Algoritm:</h3>
 <ul>

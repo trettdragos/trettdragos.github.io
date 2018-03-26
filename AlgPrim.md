@@ -1,6 +1,64 @@
 Algoritmul lui Prim
 ---------------------
 
+```
+#define INF 1000000
+int cm[101],c[101][101],t[101],n;
+void citire()
+{
+ifstream f("date.in");
+f>>n;
+for(int i=1;i<=n;i++)
+   for(int j=1;j<n;j++)
+     c[i][j]=INF;
+for(int i=1;i<=n;i++)
+   c[i][i]=0;
+iny x,y,cost;
+while(f>>x>>y>>cost)
+   c[x][y]=c[y][x]=cost;
+}
+void Prim()
+{
+for(int i=1;i<=n;i++)
+   { cm[i]=c[start][i];
+     t[i]=start;
+   }
+viz[start]=1;
+t[start]=0;
+nrvfsel=1;
+while(nrvfsel<n)
+  {
+   int mini=INF,vf;
+   for(int i=1;i<=n;i++)
+      if(cm[i]<mini && viz[i]==0)
+       {
+        mini=cm[i];
+        vf=i;
+       }
+   viz[vf]=1;
+   for(int i=1;i<=n;i++)
+     if(viz[i]==0 && cm[i]>c[vf][i])
+       {
+        cm[i]=c[vf][i];
+        t[i]=vf;
+       }
+   nrvfsel++;
+  }
+}
+void afisare()
+{
+int costAPM=0;
+for(int i=1;i<=n;i++)
+  if(i!=start)
+   {
+    cout<<i<<" "<<t[i]<<"\n";
+    costAPM=c[i][t[i]];
+   }
+ cout<<"Costul APM="<<costAPM;
+}
+```
+
+
 Determina Apm al unui graf conex n vf si definitia fucntia const.
 
 ###Algoritm:

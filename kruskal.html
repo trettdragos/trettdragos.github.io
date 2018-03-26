@@ -1014,159 +1014,41 @@ body .markdown-body
     page-break-after: avoid;
   }
 }
-</style><title>Roy-Floyd</title></head><body><article class="markdown-body"><h2 id="roy-floyd"><a name="user-content-roy-floyd" href="#roy-floyd" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Roy-Floyd</h2>
-<pre><code>#define INF 100000
-int n,c[101][101],d[101][101];
+</style><title>kruskal</title></head><body><article class="markdown-body"><h2 id="kruskal"><a name="user-content-kruskal" href="#kruskal" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Kruskal</h2>
+<pre><code>struct muchie
+{int x,y,cost;
+}u[1000];
+int n,m,c[101];
 void citire()
 {
 ifstream f(&quot;date.in&quot;);
-f&gt;&gt;n;
-int x,y,cost;
-for(int i=1;i&lt;=n;i++)
-   for(int j=1;j&lt;=n;j++)
-     c[i][j]=INF;
-for(int i=1;i&lt;=n;i++)
-   c[i][i]=0;
-while(f&gt;&gt;x&gt;&gt;y&gt;&gt;cost)
-   {
-    c[x][y]=cost;
-    d[x][y]=x;
-   }
-}
-void Roy_Floyd()
+f&gt;&gt;n&gt;&gt;m;
+for(int i=0;i&lt;m;i++)
+   f&gt;&gt;u[i].x&gt;&gt;u[i].y&gt;&gt;u[i].cost;
+void sortare_muchii()
 {
-for(int k=1;k&lt;=n;k++)
- for(int i=1;i&lt;=n;i++)
-   for(int j=1;j&lt;=n;j++)
-     if(c[i][j]&gt;c[i][k]+c[k][j])
-       {
-        c[i][j]=c[i][k]+c[k][j];
-        d[i][j]=d[k][j];
-       }
+for(int i=0;i&lt;m-1;i++)
+  for(int j=i+1;j&lt;m;j++)
+   if(u[i].cost&gt;u[j].cost)
+    {
+    muchie aux;
+    aux=u[i];
+    u[i]=u[j];
+    u[j]=aux;
+    }
 }
-void drum(int i,int j)
-{
-if(i!=j)
-   drum(i,d[i][j]);
-cout&lt;&lt;j&lt;&lt;&quot; &quot;;
-}
-void afisare()
+void kruskal()
 {
 for(int i=1;i&lt;=n;i++)
-  for(int j=1;j&lt;=n;j++)
-     if(i!=j)
+   c[i]=i;
+sortare_muchii();
+int NrSel=0,costA=0,i=0;
+while(NrSel&lt;n-1)
+  if(c[u[i].x]!=c[u[i].y])
+    {
+     cout&lt;&lt;u[i]x&lt;&lt;&quot; &quot;&lt;&lt;u[i].y&lt;&lt;&quot;\n&quot;;
+     NrSel++;
+    }
 }
-</code></pre>
 
-<h3 id="exeplu-am-prins-numai-finalul-sorry-boss"><a name="user-content-exeplu-am-prins-numai-finalul-sorry-boss" href="#exeplu-am-prins-numai-finalul-sorry-boss" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Exeplu, am prins numai finalul sorry boss</h3>
-<p>k= 4<br />
-C:</p>
-<table>
-<thead>
-<tr>
-<th>-</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>0</td>
-<td>5</td>
-<td>3</td>
-<td>2</td>
-<td>7</td>
-</tr>
-<tr>
-<td>2</td>
-<td>-</td>
-<td>0</td>
-<td>5</td>
-<td>7</td>
-<td>2</td>
-</tr>
-<tr>
-<td>3</td>
-<td>-</td>
-<td>3</td>
-<td>0</td>
-<td>2</td>
-<td>7</td>
-</tr>
-<tr>
-<td>4</td>
-<td>-</td>
-<td>3</td>
-<td>1</td>
-<td>0</td>
-<td>5</td>
-</tr>
-<tr>
-<td>5</td>
-<td>-</td>
-<td>7</td>
-<td>2</td>
-<td>4</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-<p>D:</p>
-<table>
-<thead>
-<tr>
-<th>-</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>0</td>
-<td>4</td>
-<td>4</td>
-<td>1</td>
-<td>2</td>
-</tr>
-<tr>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-<td>2</td>
-<td>3</td>
-<td>2</td>
-</tr>
-<tr>
-<td>3</td>
-<td>0</td>
-<td>4</td>
-<td>0</td>
-<td>3</td>
-<td>2</td>
-</tr>
-<tr>
-<td>4</td>
-<td>0</td>
-<td>4</td>
-<td>4</td>
-<td>0</td>
-<td>2</td>
-</tr>
-<tr>
-<td>5</td>
-<td>0</td>
-<td>4</td>
-<td>3</td>
-<td>3</td>
-<td>0</td>
-</tr>
-</tbody>
-</table></article></body></html>
+</code></pre></article></body></html>

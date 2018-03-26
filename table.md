@@ -5,7 +5,8 @@ Pentru test Alg prim, kruskal, Roy floyd, Dijkstra
 [ALG PRIM](/AlgPrim.html)
 [Roy Floyd](/Roy-Floyd.html)
 [Dijkstra](/algDijkstra.html)
+[Kruskal](/kruskal.html)
 
 !!! Atentie
 
-Kruskal is missing, comming soon
+DOAR DIJKSTRA ARE EXPLICATII SI EXEMPLE
