@@ -1042,13 +1042,22 @@ void kruskal()
 for(int i=1;i&lt;=n;i++)
    c[i]=i;
 sortare_muchii();
-int NrSel=0,costA=0,i=0;
-while(NrSel&lt;n-1)
+int cost = 0, nr=0, i=0;
+while(nr&lt;n-1){
   if(c[u[i].x]!=c[u[i].y])
     {
      cout&lt;&lt;u[i]x&lt;&lt;&quot; &quot;&lt;&lt;u[i].y&lt;&lt;&quot;\n&quot;;
-     NrSel++;
+     nr++;
+     int a=c[u[i].x];
+     int b = c[u[i].y];
+     for(int j=1; j&lt;=n; j++)
+        if(x[j]==b)
+            c[j]=a;
+     cost+=u[i].cost;
     }
+    i++;
+}
+cout&lt;&lt;cost;
 }
 
 </code></pre></article></body></html>
